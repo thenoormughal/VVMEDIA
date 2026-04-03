@@ -1,0 +1,3422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <head>
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <title>Viral Vibes Agency</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet">
+    <style>
+      :root {
+        --deep: #022939;
+        --dark: #0d5d74;
+        --mid: #165c6f;
+        --teal: #468096;
+        --bright: #64ccc5;
+        --white: #ffffff;
+        --off: #d6f0ee;
+        --black: #040e14;
+        --glass: rgba(100, 204, 197, .08);
+        --gb: rgba(100, 204, 197, .18)
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0
+      }
+
+      html {
+        scroll-behavior: smooth
+      }
+
+      body {
+        background: var(--deep);
+        color: var(--white);
+        font-family: 'DM Sans', sans-serif;
+        overflow-x: hidden
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-family: 'Syne', sans-serif
+      }
+
+      a {
+        text-decoration: none
+      }
+
+      section {
+        position: relative;
+        z-index: 1;
+        padding: 90px 5%;
+        text-align: center
+      }
+
+      .sec-head {
+        max-width: 700px;
+        margin: 0 auto 56px;
+        text-align: center
+      }
+
+      .eyebrow {
+        display: inline-block;
+        font-size: .67rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--bright);
+        margin-bottom: 12px
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: -.5px;
+        line-height: 1.14;
+        margin-bottom: 14px
+      }
+
+      .section-sub {
+        color: rgba(255, 255, 255, .52);
+        font-size: .93rem;
+        line-height: 1.78;
+        max-width: 560px;
+        margin: 0 auto
+      }
+
+      .glow-hr {
+        height: 1px;
+        margin: 0 5%;
+        background: linear-gradient(90deg, transparent, var(--bright), transparent);
+        opacity: .16
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity .6s ease, transform .6s ease
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0)
+      }
+
+      .btn-p {
+        display: inline-block;
+        background: var(--bright);
+        color: var(--deep);
+        padding: 13px 32px;
+        border-radius: 50px;
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        font-size: .88rem;
+        transition: all .2s;
+        box-shadow: 0 0 28px rgba(100, 204, 197, .28)
+      }
+
+      .btn-p:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 48px rgba(100, 204, 197, .5)
+      }
+
+      .btn-o {
+        display: inline-block;
+        border: 1.5px solid var(--gb);
+        color: var(--white);
+        padding: 13px 32px;
+        border-radius: 50px;
+        font-family: 'Syne', sans-serif;
+        font-weight: 600;
+        font-size: .88rem;
+        transition: all .2s
+      }
+
+      .btn-o:hover {
+        border-color: var(--bright);
+        color: var(--bright)
+      }
+
+      .ph {
+        background: linear-gradient(135deg, rgba(13, 93, 116, .4), rgba(22, 92, 111, .14));
+        border: 2px dashed rgba(100, 204, 197, .26);
+        border-radius: 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: rgba(100, 204, 197, .48);
+        font-size: .7rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 16px
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 5%;
+        background: rgba(2, 41, 57, .92);
+        backdrop-filter: blur(22px);
+        border-bottom: 1px solid var(--gb)
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .nav-logo-img {
+        width: 45px;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .nav-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        background: linear-gradient(135deg, var(--dark), var(--bright));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: .82rem;
+        font-weight: 900;
+        color: var(--deep);
+        flex-shrink: 0
+      }
+
+      .nav-logo span {
+        color: var(--bright)
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 22px;
+        list-style: none
+      }
+
+      .nav-links a {
+        color: rgba(255, 255, 255, .6);
+        font-size: .8rem;
+        font-weight: 500;
+        transition: color .2s
+      }
+
+      .nav-links a:hover {
+        color: var(--bright)
+      }
+
+      .nav-cta {
+        background: var(--bright);
+        color: var(--deep);
+        padding: 9px 20px;
+        border-radius: 50px;
+        font-family: 'Syne', sans-serif;
+        font-size: .8rem;
+        font-weight: 700;
+        transition: all .2s;
+        white-space: nowrap
+      }
+
+      .nav-cta:hover {
+        background: var(--white);
+        transform: translateY(-1px)
+      }
+
+      /* Mobile par Logo aur Protocol Section dono hide karne ke liye */
+      @media (max-width: 768px) {
+
+        /* Logo ko hide karne ke liye (Aapki image mein jo broken logo tha) */
+        .logo-img,
+        .header img {
+          display: none !important;
+        }
+
+        /* Poora 6-Step Protocol section hide karne ke liye */
+        .protocol-section {
+          display: none !important;
+        }
+
+      }
+
+      /* HERO */
+      .hero {
+        height: 100vh;
+        min-height: 600px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        padding: 0 8%;
+        position: relative;
+        overflow: hidden;
+        text-align: left
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background: radial-gradient(ellipse 70% 80% at 72% 50%, rgba(13, 93, 116, .44) 0%, transparent 65%), radial-gradient(ellipse 40% 50% at 8% 80%, rgba(100, 204, 197, .06) 0%, transparent 55%), linear-gradient(135deg, #022939 0%, #0c4d61 58%, #165c6f 100%)
+      }
+
+      .hero-grid-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background-image: linear-gradient(rgba(100, 204, 197, .033) 1px, transparent 1px), linear-gradient(90deg, rgba(100, 204, 197, .033) 1px, transparent 1px);
+        background-size: 55px 55px
+      }
+
+      .hero-left {
+        position: relative;
+        z-index: 2;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        height: 100%
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--glass);
+        border: 1px solid var(--gb);
+        border-radius: 50px;
+        padding: 6px 16px;
+        font-size: .66rem;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--bright);
+        margin-bottom: 24px
+      }
+
+      .hero-badge::before {
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--bright);
+        flex-shrink: 0;
+        animation: blink 2s infinite
+      }
+
+      @keyframes blink {
+
+        0%,
+        100% {
+          opacity: 1
+        }
+
+        50% {
+          opacity: .2
+        }
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 3vw, 3.2rem);
+        font-weight: 800;
+        line-height: 1.07;
+        letter-spacing: -.5px;
+        margin-bottom: 20px;
+        max-width: 480px
+      }
+
+      .hero h1 em {
+        font-style: normal;
+        background: linear-gradient(120deg, var(--bright) 0%, #a8f0ec 55%, var(--off) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent
+      }
+
+      .hero-sub {
+        font-size: .97rem;
+        color: rgba(255, 255, 255, .6);
+        line-height: 1.78;
+        margin-bottom: 34px;
+        max-width: 440px
+      }
+
+      .hero-sub strong {
+        color: var(--bright);
+        font-weight: 600
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 36px
+      }
+
+      .hero-trust {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap
+      }
+
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: .74rem;
+        color: rgba(255, 255, 255, .44)
+      }
+
+      .trust-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--bright);
+        flex-shrink: 0
+      }
+
+      /* Hero right */
+      .hero-right {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        overflow: visible
+      }
+
+      .hero-shapes {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden
+      }
+
+      .hs-blob {
+        position: absolute;
+        width: 85%;
+        height: 85%;
+        background: radial-gradient(ellipse 60% 70% at 50% 62%, rgba(13, 93, 116, .62) 0%, rgba(100, 204, 197, .07) 60%, transparent 100%);
+        border-radius: 54% 46% 38% 62% / 46% 54% 46% 54%;
+        animation: morphBlob 9s ease-in-out infinite
+      }
+
+      @keyframes morphBlob {
+
+        0%,
+        100% {
+          border-radius: 54% 46% 38% 62% / 46% 54% 46% 54%
+        }
+
+        33% {
+          border-radius: 38% 62% 54% 46% / 60% 40% 60% 40%
+        }
+
+        66% {
+          border-radius: 62% 38% 46% 54% / 40% 60% 40% 60%
+        }
+      }
+
+      .hs-ring {
+        position: absolute;
+        width: 70%;
+        height: 70%;
+        border-radius: 50%;
+        border: 1.5px solid rgba(100, 204, 197, .2);
+        animation: spinR 20s linear infinite
+      }
+
+      .hs-ring::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--bright);
+        box-shadow: 0 0 14px var(--bright)
+      }
+
+      .hs-ring2 {
+        position: absolute;
+        width: 88%;
+        height: 88%;
+        border-radius: 50%;
+        border: 1px dashed rgba(100, 204, 197, .1);
+        animation: spinR 30s linear infinite reverse
+      }
+
+      .hs-ring2::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 22%;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(100, 204, 197, .5);
+        box-shadow: 0 0 10px rgba(100, 204, 197, .5)
+      }
+
+      @keyframes spinR {
+        from {
+          transform: rotate(0deg)
+        }
+
+        to {
+          transform: rotate(360deg)
+        }
+      }
+
+      .hs-hex {
+        position: absolute;
+        top: 10%;
+        right: 7%;
+        width: 90px;
+        height: 90px;
+        background: linear-gradient(135deg, rgba(100, 204, 197, .1), rgba(13, 93, 116, .22));
+        border: 1px solid rgba(100, 204, 197, .18);
+        clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+        animation: spinR 14s linear infinite
+      }
+
+      .hs-diamond {
+        position: absolute;
+        bottom: 24%;
+        left: 7%;
+        width: 38px;
+        height: 38px;
+        background: linear-gradient(135deg, var(--bright), var(--mid));
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        opacity: .55;
+        animation: pls 3.5s ease-in-out infinite
+      }
+
+      .hs-dots {
+        position: absolute;
+        bottom: 10%;
+        right: 6%;
+        width: 76px;
+        height: 76px;
+        background-image: radial-gradient(circle, rgba(100, 204, 197, .38) 1.5px, transparent 1.5px);
+        background-size: 13px 13px;
+        opacity: .48;
+        animation: pls 4s ease-in-out infinite 1s
+      }
+
+      /* === FOUNDERS SLIDER === */
+      .hero-founders {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Slides */
+      .founder-slide {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+
+        opacity: 0;
+        transform: translateY(60px) scale(0.9);
+        filter: blur(10px);
+
+        transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+        /* cinematic */
+      }
+
+      /* Active slide */
+      .founder-slide.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+        z-index: 3;
+      }
+
+      /* Image */
+      /* Image ka size yahan se control hoga */
+      .founder-slide img {
+        height: 110%;
+        /* 110% se kam karke 70% kar diya, is se pic choti ho jayegi */
+        width: auto;
+        /* Width ko auto rakhen taakay pic kharab na ho */
+        max-width: 100%;
+        object-fit: contain;
+        /* Ensure karega ke image cut na ho */
+
+        /* Neeche wali dono lines hata dein agar wo mojood hain */
+        /* transform: translateY(-50px);  <-- Isay delete kar dein */
+        /* max-height: none;             <-- Isay bhi delete kar dein */
+
+        filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.5));
+        display: block;
+        margin: 0 auto;
+        /* Center karne ke liye */
+      }
+
+      /* Text */
+      .founder-info {
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .founder-info h4 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .founder-info p {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      /* === DOTS === */
+      .founder-dots {
+        position: absolute;
+        bottom: 20px;
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .dot.active {
+        background: #00f0ff;
+        transform: scale(1.3);
+      }
+
+      @keyframes pls {
+
+        0%,
+        100% {
+          opacity: .44;
+          transform: scale(1)
+        }
+
+        50% {
+          opacity: .8;
+          transform: scale(1.06)
+        }
+      }
+
+      /* Stat pills */
+      .stat-pill {
+        position: absolute;
+        z-index: 4;
+        background: rgba(2, 41, 57, .9);
+        border: 1px solid var(--gb);
+        backdrop-filter: blur(16px);
+        border-radius: 40px;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        white-space: nowrap
+      }
+
+      .sp1 {
+        top: 20%;
+        left: 2%;
+        animation: fltP 5s ease-in-out infinite
+      }
+
+      .sp2 {
+        bottom: 28%;
+        left: 2%;
+        animation: fltP 5s ease-in-out infinite 1.8s
+      }
+
+      .sp3 {
+        top: 46%;
+        right: 3%;
+        animation: fltP 5s ease-in-out infinite .9s
+      }
+
+      @keyframes fltP {
+
+        0%,
+        100% {
+          transform: translateY(0)
+        }
+
+        50% {
+          transform: translateY(-8px)
+        }
+      }
+
+      .pill-icon {
+        font-size: .95rem
+      }
+
+      .pill-val {
+        font-family: 'Syne', sans-serif;
+        font-size: .88rem;
+        font-weight: 800;
+        color: var(--white)
+      }
+
+      .pill-lbl {
+        font-size: .58rem;
+        color: rgba(255, 255, 255, .4);
+        margin-top: 1px
+      }
+
+      /* Founder */
+      .hero-founder {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        animation: imgFlt 7s ease-in-out infinite
+      }
+
+      @keyframes imgFlt {
+
+        0%,
+        100% {
+          transform: translateY(0)
+        }
+
+        50% {
+          transform: translateY(-16px)
+        }
+      }
+
+      .hero-founder img {
+        width: auto;
+        max-width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: bottom center;
+        filter: drop-shadow(0 0 40px rgba(100, 204, 197, .24)) drop-shadow(0 30px 70px rgba(2, 41, 57, .7))
+      }
+
+      .hero-founder-ph {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        padding-bottom: 20px;
+        gap: 10px;
+        color: rgba(100, 204, 197, .42);
+        font-size: .68rem;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        text-align: center
+      }
+
+      .ph-fig {
+        font-size: min(36vw, 300px);
+        line-height: 1;
+        opacity: .3;
+        filter: drop-shadow(0 0 28px rgba(100, 204, 197, .25))
+      }
+
+      /* LOGOS 
+    .logos-strip {
+      padding: 38px 5%;
+      text-align: center;
+      background: rgba(13, 93, 116, .07);
+      border-top: 1px solid var(--gb);
+      border-bottom: 1px solid var(--gb);
+      position: relative;
+      z-index: 1
+    }
+
+    .logos-label {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .24);
+      margin-bottom: 20px
+    }
+
+    .logos-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      flex-wrap: wrap
+    }
+
+    .logo-ph {
+      width: 100px;
+      height: 36px;
+      background: rgba(100, 204, 197, .04);
+      border: 1px dashed rgba(100, 204, 197, .16);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .56rem;
+      color: rgba(100, 204, 197, .28);
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase
+    }*/
+
+      /* STATS */
+      .stats-section {
+        background: linear-gradient(135deg, rgba(13, 93, 116, .2) 0%, rgba(2, 41, 57, .88) 100%);
+        border-top: 1px solid var(--gb);
+        border-bottom: 1px solid var(--gb);
+        padding: 80px 0;
+        /* Section ko thori breathing space di hai */
+      }
+
+      .stats-grid {
+        display: grid;
+        /* Center card (1.3fr) ko side walon (0.85fr) se kafi bara rakha hai */
+        grid-template-columns: 0.85fr 1.3fr 0.85fr;
+        gap: 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+        align-items: stretch;
+      }
+
+      .stat-card {
+        background: var(--glass);
+        border: 1px solid var(--gb);
+        border-radius: 18px;
+        padding: 45px 15px;
+        position: relative;
+        overflow: hidden;
+        transition: transform .25s;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-4px);
+      }
+
+      /* Bottom glow line */
+      .stat-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, var(--bright), transparent);
+      }
+
+      .stat-num {
+        font-family: 'Syne', sans-serif;
+        /* Font size ko thora optimize kiya taakay space bani rahe */
+        font-size: clamp(1.8rem, 3.4vw, 3.3rem);
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--bright), var(--off));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: block;
+        line-height: 1;
+        white-space: nowrap;
+        /* Is se + sign kabhi niche nahi gire ga */
+        letter-spacing: -0.01em;
+      }
+
+      .stat-label {
+        color: rgba(255, 255, 255, .46);
+        font-size: 0.88rem;
+        margin-top: 12px;
+        line-height: 1.4;
+      }
+
+      /* Responsive: Mobile par grid ko stack kar dena behtar hai taakay text bara dikhe */
+      @media (max-width: 850px) {
+        .stats-grid {
+          grid-template-columns: 1fr;
+          /* Mobile pe aik column */
+          max-width: 450px;
+          gap: 15px;
+        }
+
+        .stat-num {
+          font-size: 3rem;
+          /* Mobile pe numbers bare aur saaf dikhen ge */
+        }
+
+        .stat-card {
+          padding: 35px 20px;
+        }
+      }
+
+      /* SERVICES */
+      .engine-section {
+        background: var(--deep);
+        padding: 80px 0;
+      }
+
+      .section-title {
+        /* 1. Width ko poora khol dein taakay text ko jagah miley */
+        width: 100%;
+        max-width: none !important;
+        display: block;
+        margin: 0 auto 20px;
+        text-align: center;
+
+        /* 2. Font size thora kam kiya hai taakay screen mein fit aaye */
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 800;
+        line-height: 1.2;
+        color: var(--white);
+
+        /* 3. Is se browser apni marzi se line nahi torey ga */
+        white-space: normal;
+        word-break: keep-all;
+      }
+
+      /* Desktop Fix: Agar container chota hai to usay barhayen */
+      .sec-head {
+        max-width: 100% !important;
+        width: 100%;
+        text-align: center;
+      }
+
+      @media (max-width: 768px) {
+        .section-title {
+          font-size: 1.8rem;
+          /* Mobile pe spacing thori tight rakhein */
+          padding: 0 10px;
+        }
+      }
+
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 1fr;
+        /* Sab cards ki height barabar rakhta hai */
+        gap: 15px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .svc {
+        background: var(--glass);
+        border: 1px solid var(--gb);
+        border-radius: 16px;
+        padding: 25px 20px;
+        display: flex;
+        flex-direction: column;
+        transition: all .3s;
+      }
+
+      .svc.w2 {
+        grid-column: span 2;
+      }
+
+      .svc-icon {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+      }
+
+      .svc-title {
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 8px;
+      }
+
+      .svc-desc {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.5;
+      }
+
+      @media (max-width: 1024px) {
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 650px) {
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .svc.w2 {
+          grid-column: span 1;
+        }
+      }
+
+      /* RESULTS SECTION BASE */
+      .results-section {
+        background: var(--deep);
+        padding: 100px 0;
+        overflow: hidden;
+      }
+
+      .results-bento-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        /* 4 Column Grid */
+        grid-auto-rows: 240px;
+        /* Standard Height */
+        gap: 20px;
+        grid-auto-flow: dense;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .result-card {
+        background: #0a181c;
+        /* Match your theme dark teal/black */
+        border: 1px solid rgba(100, 204, 197, 0.15);
+        border-radius: 24px;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+      }
+
+      .result-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Poori grid fill hogi professional look ke liye */
+        filter: contrast(1.05) brightness(0.9);
+        transition: all 0.6s ease;
+      }
+
+      /* Hover Effects */
+      .result-card:hover {
+        border-color: var(--bright);
+        transform: translateY(-8px) scale(1.01);
+        box-shadow: 0 20px 40px rgba(100, 204, 197, 0.25);
+        z-index: 10;
+      }
+
+      .result-card:hover .result-img {
+        filter: contrast(1.1) brightness(1.1);
+        transform: scale(1.08);
+      }
+
+      /* BENTO CORE SIZES */
+      .bento-large {
+        grid-column: span 2;
+        grid-row: span 2;
+        /* 74M Views box */
+      }
+
+      .bento-wide {
+        grid-column: span 2;
+        /* Horizontal boxes like 44M views */
+      }
+
+      .bento-tall {
+        grid-row: span 2;
+        /* Portrait/Profile shots */
+      }
+
+      /* TAG STYLING */
+      .rc-tag {
+        position: absolute;
+        bottom: 20px;
+        /* Niche lagaya hai taake screenshot ka main part (upper side) dikhe */
+        left: 20px;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+        color: var(--bright);
+        border: 1px solid var(--bright);
+        padding: 6px 14px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        border-radius: 50px;
+        z-index: 5;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* MOBILE & TABLET RESPONSIVE */
+      @media (max-width: 1024px) {
+        .results-bento-grid {
+          grid-template-columns: repeat(2, 1fr);
+          grid-auto-rows: 220px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .results-bento-grid {
+          grid-template-columns: repeat(2, 1fr);
+          grid-auto-rows: 150px;
+          /* Chote boxes mobile par */
+          gap: 12px;
+        }
+
+        .bento-large {
+          grid-column: span 2;
+          grid-row: span 2;
+        }
+
+        .bento-wide {
+          grid-column: span 2;
+        }
+
+        .rc-tag {
+          padding: 4px 8px;
+          font-size: 0.55rem;
+          bottom: 10px;
+          left: 10px;
+        }
+      }
+
+
+      /* PROTOCOL zigzag */
+      .protocol-section {
+        background: linear-gradient(180deg, rgba(13, 93, 116, .07) 0%, var(--deep) 100%)
+      }
+
+      .zigzag {
+        position: relative;
+        max-width: 920px;
+        margin: 0 auto;
+        text-align: left
+      }
+
+      .zigzag::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        background: linear-gradient(to bottom, var(--bright), rgba(100, 204, 197, .06))
+      }
+
+      .zz-row {
+        display: grid;
+        grid-template-columns: 1fr 60px 1fr;
+        align-items: start;
+        padding-bottom: 54px
+      }
+
+      .zz-row:last-child {
+        padding-bottom: 0
+      }
+
+      .zz-left {
+        padding-right: 34px;
+        text-align: right
+      }
+
+      .zz-right {
+        padding-left: 34px;
+        text-align: left
+      }
+
+      .zz-empty {
+        pointer-events: none
+      }
+
+      .zz-num {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--deep);
+        border: 2.5px solid var(--bright);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Syne', sans-serif;
+        font-size: .92rem;
+        font-weight: 800;
+        color: var(--bright);
+        flex-shrink: 0;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 0 22px rgba(100, 204, 197, .22);
+        justify-self: center;
+        margin-top: 4px
+      }
+
+      .zz-card {
+        background: var(--glass);
+        border: 1px solid var(--gb);
+        border-radius: 15px;
+        padding: 20px 18px;
+        transition: all .3s
+      }
+
+      .zz-card:hover {
+        border-color: var(--bright);
+        box-shadow: 0 12px 36px rgba(100, 204, 197, .1)
+      }
+
+      .zz-lbl {
+        font-size: .56rem;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--bright);
+        margin-bottom: 6px;
+        display: block
+      }
+
+      .zz-card h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 7px;
+        color: var(--white)
+      }
+
+      .zz-card p {
+        font-size: .8rem;
+        color: rgba(255, 255, 255, .5);
+        line-height: 1.7
+      }
+
+      /* Mobile Optimization - Only for screens smaller than 768px */
+      @media (max-width: 768px) {
+        .zigzag::before {
+          left: 25px;
+          /* Line ko left side par shift kiya */
+          transform: none;
+        }
+
+        .zz-row {
+          grid-template-columns: 50px 1fr;
+          /* 3 columns ki bajaye 2 columns (Number aur Card) */
+          gap: 15px;
+          padding-bottom: 40px;
+          display: flex;
+          /* Flexbox use kiya takay spacing sahi rahay */
+          flex-direction: row;
+          align-items: flex-start;
+        }
+
+        /* Jo empty divs desktop par zigzag banati thin, unhe mobile par khatam kar diya */
+        .zz-empty {
+          display: none;
+        }
+
+        .zz-left,
+        .zz-right {
+          padding: 0;
+          text-align: left;
+          width: 100%;
+        }
+
+        .zz-num {
+          margin-top: 0;
+          z-index: 2;
+        }
+
+        /* Order fix: Taakay 02, 04, 06 bhi line ke mutabiq sahi dikhein */
+        .zz-row:nth-child(even) {
+          flex-direction: row;
+        }
+      }
+
+      /* PACKAGES */
+      .pkg-section {
+        background: var(--deep)
+      }
+
+      .pkg-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        max-width: 980px;
+        margin: 0 auto;
+        text-align: left
+      }
+
+      .pkg-card {
+        background: var(--glass);
+        border: 1px solid var(--gb);
+        border-radius: 22px;
+        padding: 36px 30px;
+        position: relative;
+        overflow: hidden;
+        transition: transform .3s
+      }
+
+      .pkg-card:hover {
+        transform: translateY(-4px)
+      }
+
+      .pkg-card.elite {
+        background: linear-gradient(148deg, rgba(13, 93, 116, .52), rgba(100, 204, 197, .05));
+        border-color: var(--bright);
+        box-shadow: 0 0 64px rgba(100, 204, 197, .12)
+      }
+
+      .pkg-card.elite::before {
+        content: '';
+        position: absolute;
+        top: -70px;
+        right: -70px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(100, 204, 197, .1) 0%, transparent 70%)
+      }
+
+      .pkg-ribbon {
+        position: absolute;
+        top: 16px;
+        right: -1px;
+        background: var(--bright);
+        color: var(--deep);
+        font-size: .56rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 5px 14px;
+        border-radius: 50px 0 0 50px;
+        box-shadow: -4px 0 14px rgba(100, 204, 197, .3)
+      }
+
+      .pkg-badges {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 18px
+      }
+
+      .pkg-badge {
+        display: inline-block;
+        padding: 4px 11px;
+        border-radius: 50px;
+        font-size: .58rem;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        text-transform: uppercase
+      }
+
+      .pkg-badge.pr {
+        background: var(--bright);
+        color: var(--deep)
+      }
+
+      .pkg-badge.gh {
+        background: rgba(100, 204, 197, .1);
+        border: 1px solid var(--gb);
+        color: var(--bright)
+      }
+
+      .pkg-name {
+        font-size: 1.28rem;
+        font-weight: 800;
+        margin-bottom: 7px
+      }
+
+      .pkg-price {
+        font-family: 'Syne', sans-serif;
+        font-size: 2.8rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--bright), var(--off));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1;
+        margin-bottom: 4px;
+        display: block
+      }
+
+      .pkg-period {
+        color: rgba(255, 255, 255, .36);
+        font-size: .78rem;
+        margin-bottom: 20px
+      }
+
+      .pkg-guar {
+        background: rgba(100, 204, 197, .07);
+        border: 1px solid rgba(100, 204, 197, .18);
+        border-radius: 10px;
+        padding: 9px 13px;
+        font-size: .74rem;
+        color: var(--bright);
+        margin-bottom: 22px;
+        display: flex;
+        align-items: center;
+        gap: 8px
+      }
+
+      .pkg-items {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        margin-bottom: 28px
+      }
+
+      .pkg-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
+        padding: 9px 11px;
+        background: rgba(2, 41, 57, .4);
+        border-radius: 9px;
+        font-size: .8rem;
+        color: rgba(255, 255, 255, .76);
+        line-height: 1.35
+      }
+
+      .pkg-item::before {
+        content: '✓';
+        color: var(--bright);
+        font-weight: 800;
+        font-size: .74rem;
+        flex-shrink: 0;
+        margin-top: 2px
+      }
+
+      .pkg-item.star::before {
+        content: '⭐';
+        font-size: .74rem
+      }
+
+      .pkg-note {
+        font-size: .7rem;
+        color: rgba(255, 255, 255, .26);
+        border-top: 1px solid rgba(255, 255, 255, .06);
+        padding-top: 16px;
+        margin-bottom: 22px;
+        line-height: 1.6
+      }
+
+      /* FOUNDER SECTION */
+      .founder-section {
+        background: linear-gradient(135deg, rgba(13, 93, 116, .1) 0%, rgba(2, 41, 57, .9) 100%);
+        border-top: 1px solid var(--gb);
+        border-bottom: 1px solid var(--gb);
+        padding: 100px 0;
+        overflow: hidden;
+      }
+
+      .founder-inner {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 60px;
+        align-items: center;
+        padding: 0 20px;
+      }
+
+      /* Unique Image Shape Logic */
+      .founder-photo {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4/5;
+        background: var(--gb);
+        /* Modern Geometric Cut-out */
+        clip-path: polygon(10% 0%, 100% 0%, 100% 90%, 90% 100%, 0% 100%, 0% 10%);
+        transition: transform 0.4s ease;
+      }
+
+      .founder-photo:hover {
+        transform: scale(1.02);
+      }
+
+      .founder-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Photo stretch nahi hogi */
+        display: block;
+        filter: grayscale(20%) contrast(1.1);
+        /* Professional look */
+      }
+
+      /* Glow Effect behind the photo */
+      .photo-glow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 2px solid var(--bright);
+        box-shadow: 0 0 20px rgba(100, 204, 197, 0.3);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* Founder Text Styles */
+      .founder-text .section-title {
+        text-align: left;
+        margin-bottom: 15px;
+        font-size: clamp(2rem, 3.5vw, 2.8rem);
+      }
+
+      .fq {
+        font-size: clamp(.96rem, 1.7vw, 1.15rem);
+        font-style: italic;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, .8);
+        border-left: 4px solid var(--bright);
+        padding-left: 20px;
+        margin: 25px 0;
+      }
+
+      .fq strong {
+        color: var(--bright);
+        font-style: normal;
+      }
+
+      .founder-text p {
+        color: rgba(255, 255, 255, .5);
+        line-height: 1.7;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+      }
+
+      /* Signature Block */
+      .founder-sig {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 30px;
+      }
+
+      .sig-av {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        /* Square with rounded corners */
+        background: linear-gradient(135deg, var(--bright), var(--dark));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        color: #fff;
+        border: 1px solid var(--gb);
+      }
+
+      .sig-name {
+        font-family: 'Syne', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--white);
+      }
+
+      .sig-role {
+        font-size: 0.75rem;
+        color: var(--bright);
+        opacity: 0.8;
+      }
+
+      /* Responsive Mobile Fix */
+      @media (max-width: 850px) {
+        .founder-inner {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 40px;
+        }
+
+        .founder-photo {
+          max-width: 280px;
+          margin: 0 auto;
+        }
+
+        .founder-text .section-title {
+          text-align: center;
+        }
+
+        .fq {
+          border-left: none;
+          padding-left: 0;
+        }
+
+        .founder-sig {
+          justify-content: center;
+        }
+      }
+
+      /* TESTIMONIALS */
+      .testi-section {
+        background: var(--deep);
+        padding: 50px 0;
+        /* Padding kam ki taakay screen mein fit aaye */
+        min-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .testi-vids {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        max-width: 950px;
+        margin: 0 auto;
+      }
+
+      .testi-vc {
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid var(--gb);
+        background: #000;
+        position: relative;
+        /* Aspect ratio 9/16 hai lekin height limit kar di taakay screen se bahar na jaye */
+        height: 500px;
+        width: 100%;
+        transition: all .3s ease;
+      }
+
+      .client-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .video-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.8) 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s;
+      }
+
+      /* Name aur Description Style */
+      .client-meta {
+        position: absolute;
+        bottom: 20px;
+        text-align: center;
+        width: 100%;
+        padding: 0 10px;
+      }
+
+      .client-name {
+        font-family: 'Syne', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 2px;
+      }
+
+      .client-desc {
+        font-size: 0.65rem;
+        color: var(--bright);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.8;
+      }
+
+      .play-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: var(--bright);
+        color: var(--deep);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        margin-bottom: 20px;
+        /* Space from name */
+      }
+
+      /* Mobile Fix */
+      @media (max-width: 800px) {
+        .testi-vids {
+          grid-template-columns: 1fr;
+          max-width: 280px;
+        }
+
+        .testi-vc {
+          height: 400px;
+        }
+      }
+
+      /* FAQ 2-col */
+      .faq-section {
+        background: linear-gradient(180deg, rgba(13, 93, 116, .07) 0%, var(--deep) 100%)
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 11px;
+        max-width: 1080px;
+        margin: 0 auto;
+        text-align: left
+      }
+
+      .faq-item {
+        background: var(--glass);
+        border: 1px solid var(--gb);
+        border-radius: 13px;
+        overflow: hidden;
+        align-self: start
+      }
+
+      .faq-q {
+        padding: 17px 19px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 13px;
+        font-weight: 600;
+        font-size: .86rem;
+        transition: color .2s;
+        user-select: none
+      }
+
+      .faq-q:hover {
+        color: var(--bright)
+      }
+
+      .faq-icon {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        background: rgba(100, 204, 197, .08);
+        border: 1px solid var(--gb);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--bright);
+        font-size: .92rem;
+        transition: transform .3s
+      }
+
+      .faq-item.open .faq-icon {
+        transform: rotate(45deg)
+      }
+
+      .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .4s ease, padding .3s;
+        padding: 0 19px;
+        color: rgba(255, 255, 255, .52);
+        font-size: .82rem;
+        line-height: 1.78
+      }
+
+      .faq-item.open .faq-a {
+        max-height: 260px;
+        padding: 0 19px 17px
+      }
+
+      /* TEAM */
+      .team-section {
+        background: var(--deep);
+        padding: 80px 0;
+      }
+
+      .team-grid {
+        display: grid;
+        /* Sirf 2 cards ke liye grid fix */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        max-width: 700px;
+        /* Width kam ki taake 2 cards pass-pass rahein */
+        margin: 0 auto;
+      }
+
+      .team-card {
+        background: var(--glass);
+        border: 1px solid var(--gb);
+        border-radius: 24px;
+        padding: 40px 25px;
+        text-align: center;
+        transition: all .3s ease;
+      }
+
+      .team-card:hover {
+        border-color: var(--bright);
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(100, 204, 197, 0.1);
+      }
+
+      /* Image circle logic for square images */
+      .team-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        border: 3px solid var(--gb);
+        overflow: hidden;
+        background: var(--dark);
+      }
+
+      .team-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Square pic ko circle mein sahi fit karega */
+        display: block;
+      }
+
+      .team-role {
+        font-size: .65rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--bright);
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .team-name {
+        font-size: 1.2rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+        color: #fff;
+      }
+
+      .team-bio {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.6;
+        margin-bottom: 25px;
+        max-width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .team-links a {
+        display: inline-block;
+        background: rgba(100, 204, 197, 0.1);
+        border: 1px solid var(--bright);
+        color: var(--bright);
+        padding: 8px 25px;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all .3s ease;
+      }
+
+      .team-links a:hover {
+        background: var(--bright);
+        color: var(--deep);
+        box-shadow: 0 0 15px var(--bright);
+      }
+
+      /* Mobile View: 1 card per row */
+      @media (max-width: 600px) {
+        .team-grid {
+          grid-template-columns: 1fr;
+          max-width: 320px;
+        }
+      }
+
+      /* BONUS */
+      .bonus-section {
+        background: linear-gradient(135deg, rgba(13, 93, 116, .36) 0%, rgba(2, 41, 57, .9) 100%);
+        border-top: 1px solid var(--gb);
+        border-bottom: 1px solid var(--gb);
+        text-align: left
+      }
+
+      .bonus-inner {
+        max-width: 920px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 54px;
+        align-items: center
+      }
+
+      .bonus-roadmap {
+        background: var(--glass);
+        border: 1px solid var(--gb);
+        border-radius: 19px;
+        padding: 28px
+      }
+
+      .roadmap-label {
+        font-size: .58rem;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--bright);
+        display: block;
+        margin-bottom: 22px
+      }
+
+      .roadmap-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 15px
+      }
+
+      .rs {
+        display: flex;
+        align-items: center;
+        gap: 13px
+      }
+
+      .rs-num {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        background: rgba(100, 204, 197, .1);
+        border: 1.5px solid var(--bright);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Syne', sans-serif;
+        font-size: .78rem;
+        font-weight: 800;
+        color: var(--bright)
+      }
+
+      .rs-text {
+        font-size: .84rem;
+        font-weight: 600
+      }
+
+      .bonus-list {
+        list-style: none;
+        margin-bottom: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px
+      }
+
+      .bonus-list li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: .84rem;
+        color: rgba(255, 255, 255, .68)
+      }
+
+      .bonus-list li::before {
+        content: '→';
+        color: var(--bright);
+        font-weight: 700;
+        flex-shrink: 0
+      }
+
+      /* CONTACT SECTION */
+      .contact-section {
+        background: var(--deep);
+        padding: 100px 0;
+      }
+
+      .contact-inner {
+        max-width: 920px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 60px;
+        align-items: center;
+        padding: 0 20px;
+      }
+
+      /* Neon Image Container */
+      .contact-img-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4/5;
+        border-radius: 30px;
+        /* Rounded Corners */
+        padding: 10px;
+        /* Space for neon glow */
+      }
+
+      .contact-pic {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 25px;
+        /* Image corners rounded */
+        position: relative;
+        z-index: 2;
+        border: 1px solid rgba(100, 204, 197, 0.2);
+      }
+
+      /* Neon Glowing Outline */
+      .neon-border {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 30px;
+        border: 2px solid var(--bright);
+        box-shadow: 0 0 15px var(--bright), inset 0 0 15px var(--bright);
+        animation: neonPulse 2s ease-in-out infinite;
+        z-index: 1;
+      }
+
+      @keyframes neonPulse {
+
+        0%,
+        100% {
+          opacity: 0.5;
+          transform: scale(1);
+        }
+
+        50% {
+          opacity: 1;
+          transform: scale(1.02);
+        }
+      }
+
+      .contact-text .section-title {
+        text-align: left;
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        margin-bottom: 20px;
+      }
+
+      .contact-text {
+        text-align: left;
+        /* Ensure karega ke text hamesha left rahe */
+      }
+
+      .contact-text .section-title {
+        text-align: left;
+        /* Title ke liye */
+      }
+
+      .contact-text p {
+        text-align: left;
+        /* Paragraph ke liye */
+        margin-left: 0;
+        margin-right: auto;
+      }
+
+      .cta-wa {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--bright);
+        color: var(--deep);
+        padding: 15px 35px;
+        border-radius: 50px;
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        transition: all 0.3s;
+        box-shadow: 0 10px 30px rgba(100, 204, 197, 0.3);
+      }
+
+      .cta-wa:hover {
+        background: #fff;
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(100, 204, 197, 0.5);
+      }
+
+      /* Mobile responsive */
+      @media (max-width: 768px) {
+        .contact-inner {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 40px;
+        }
+
+        .contact-img-container {
+          max-width: 320px;
+          margin: 0 auto;
+        }
+
+        .contact-text .section-title {
+          text-align: center;
+        }
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--black);
+        padding: 34px 5%;
+        border-top: 1px solid rgba(255, 255, 255, .05);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 13px
+      }
+
+      .footer-logo {
+        font-family: 'Syne', sans-serif;
+        font-size: 1rem;
+        font-weight: 800;
+        color: var(--bright)
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 18px
+      }
+
+      .footer-links a {
+        color: rgba(255, 255, 255, .28);
+        font-size: .74rem;
+        transition: color .2s
+      }
+
+      .footer-links a:hover {
+        color: var(--bright)
+      }
+
+      .footer-copy {
+        font-size: .68rem;
+        color: rgba(255, 255, 255, .15)
+      }
+
+      /* RESPONSIVE */
+      @media(max-width:1100px) {
+        .services-grid {
+          grid-template-columns: repeat(3, 1fr)
+        }
+
+        .founder-inner {
+          grid-template-columns: 230px 1fr;
+          gap: 44px
+        }
+      }
+
+      @media(max-width:900px) {
+        .hero {
+          grid-template-columns: 1fr;
+          height: auto;
+          min-height: 100svh;
+          padding-top: 70px
+        }
+
+        .hero-left {
+          padding: 50px 5% 28px;
+          align-items: center;
+          text-align: center
+        }
+
+        .hero h1 {
+          font-size: clamp(2rem, 7vw, 3.2rem);
+          letter-spacing: -.2px;
+          max-width: 100%
+        }
+
+        .hero-sub {
+          max-width: 100%;
+          text-align: center
+        }
+
+        .hero-btns {
+          justify-content: center
+        }
+
+        .hero-trust {
+          justify-content: center
+        }
+
+        .hero-right {
+          height: 56vw;
+          min-height: 280px
+        }
+
+        .sp1 {
+          top: 10%;
+          left: 1%
+        }
+
+        .sp2 {
+          bottom: 10%;
+          left: 1%
+        }
+
+        .sp3 {
+          top: 40%;
+          right: 2%
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(3, 1fr)
+        }
+
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr)
+        }
+
+        .svc.w2 {
+          grid-column: span 1
+        }
+
+        .pkg-grid {
+          grid-template-columns: 1fr
+        }
+
+        .faq-grid {
+          grid-template-columns: 1fr
+        }
+
+        .testi-vids {
+          grid-template-columns: repeat(3, 1fr)
+        }
+
+        .testi-texts {
+          grid-template-columns: 1fr 1fr
+        }
+
+        .founder-inner {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          text-align: center
+        }
+
+        .founder-text .section-title,
+        .founder-text .fq,
+        .founder-text p {
+          text-align: left
+        }
+
+        .bonus-inner,
+        .contact-inner {
+          grid-template-columns: 1fr;
+          gap: 34px
+        }
+
+        /* zigzag mobile */
+        .zigzag::before {
+          left: 22px;
+          transform: none
+        }
+
+        .zz-row {
+          grid-template-columns: 50px 1fr;
+          padding-bottom: 40px
+        }
+
+        .zz-num {
+          width: 44px;
+          height: 44px;
+          font-size: .82rem;
+          grid-column: 1;
+          grid-row: 1;
+          justify-self: start;
+          margin-left: 3px
+        }
+
+        .zz-left {
+          display: none
+        }
+
+        .zz-right {
+          grid-column: 2;
+          grid-row: 1;
+          padding-left: 14px;
+          text-align: left
+        }
+
+        .zz-empty {
+          display: none
+        }
+      }
+
+      @media(max-width:640px) {
+        .nav-links {
+          display: none
+        }
+
+        section {
+          padding: 70px 4%
+        }
+
+        .hero h1 {
+          font-size: clamp(1.85rem, 8vw, 2.7rem)
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr 1fr
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr 1fr
+        }
+
+        .results-grid {
+          grid-template-columns: repeat(2, 1fr)
+        }
+
+        .testi-vids {
+          grid-template-columns: 1fr
+        }
+
+        .testi-texts {
+          grid-template-columns: 1fr
+        }
+
+        .team-grid {
+          grid-template-columns: repeat(2, 1fr)
+        }
+      }
+
+      @media(max-width:380px) {
+        .stats-grid {
+          grid-template-columns: 1fr
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr
+        }
+      }
+
+      /* Mouse Glow Background */
+      .cursor-glow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 600px;
+        /* Size bada kiya hai */
+        height: 600px;
+        /* Glow ko thoda bright aur teal color diya hai */
+        background: radial-gradient(circle, rgba(100, 204, 197, 0.18) 0%, rgba(100, 204, 197, 0.05) 40%, rgba(0, 0, 0, 0) 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        /* Bohat zaroori: clicks block nahi honge */
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        /* Isay sab se oopar rakha hai */
+        mix-blend-mode: screen;
+        /* Ye dark background par glow ko "pop" karega */
+        will-change: transform;
+        display: block;
+      }
+
+      /* --- MARQUEE HEADING STYLE --- */
+      .marquee-header {
+        text-align: center;
+        margin-bottom: 50px;
+        padding: 0 20px;
+      }
+
+      .marquee-header .eyebrow {
+        color: var(--bright);
+        /* Teal color */
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .marquee-header .section-title {
+        font-size: 2.5rem;
+        color: #ffffff;
+      }
+
+      .marquee-header .highlight {
+        color: var(--bright);
+        font-style: italic;
+      }
+
+      /* --- MARQUEE CORE ENGINE (FIXED FOR 8 LOGOS) --- */
+      .client-marquee-section {
+        background-color: var(--deep);
+        padding: 80px 0;
+        overflow: hidden;
+      }
+
+      .marquee-container {
+        width: 100%;
+        position: relative;
+        /* Side gradients for soft fade effect */
+        mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      }
+
+      .marquee-content {
+        display: flex;
+        /* Calculation: Item width (220px) * Total (16 items) */
+        width: calc(220px * 16);
+        animation: scroll-8 30s linear infinite;
+      }
+
+      /* Individual Item */
+      .client-logo-item {
+        width: 220px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+      }
+
+      .logo-circle {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(100, 204, 197, 0.4);
+        /* Hollow Teal border */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.4s ease;
+      }
+
+      .logo-circle img {
+        max-width: 55%;
+        filter: grayscale(100%) brightness(0.8);
+        transition: all 0.4s ease;
+      }
+
+      /* Hover State */
+      .client-logo-item:hover .logo-circle {
+        border-color: var(--bright);
+        box-shadow: 0 0 20px rgba(100, 204, 197, 0.3);
+        background: rgba(100, 204, 197, 0.05);
+      }
+
+      .client-logo-item:hover .logo-circle img {
+        filter: grayscale(0%) brightness(1.2);
+        transform: scale(1.1);
+      }
+
+      /* --- THE KEY: FIXED ANIMATION FOR 8 LOGOS --- */
+      @keyframes scroll-8 {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          /* Shift exactly by 8 items to make it seamless */
+          transform: translateX(calc(-220px * 8));
+        }
+      }
+
+      /* Phone Responsive */
+      @media (max-width: 768px) {
+        .marquee-header .section-title {
+          font-size: 1.8rem;
+        }
+
+        .marquee-content {
+          width: calc(160px * 16);
+        }
+
+        .client-logo-item {
+          width: 160px;
+        }
+
+        @keyframes scroll-8 {
+          0% {
+            transform: translateX(0);
+          }
+
+          100% {
+            transform: translateX(calc(-160px * 8));
+          }
+        }
+      }
+
+      /* --- TESTIMONIALS SECTION --- */
+      .testimonials-marquee-section {
+        background-color: var(--deep);
+        padding: 100px 0;
+        overflow: hidden;
+      }
+
+      .testimonial-container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        /* Soft edges fade effect */
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      }
+
+      .testimonial-content {
+        display: flex;
+        gap: 30px;
+        /* Space between screenshots */
+        /* Calculation: approx 350px width per card + 30px gap * 16 items */
+        width: calc((350px + 30px) * 16);
+        animation: chat-scroll 45s linear infinite;
+      }
+
+      /* Pause on Hover */
+      .testimonial-content:hover {
+        animation-play-state: paused;
+      }
+
+      /* Chat Card Styling */
+      .chat-card {
+        width: 350px;
+        /* Standard width for chat screenshots */
+        height: 450px;
+        /* Fixed height for alignment */
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 20px;
+        border: 1px solid rgba(100, 204, 197, 0.15);
+        padding: 10px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.3s ease, border-color 0.3s;
+      }
+
+      .chat-card:hover {
+        border-color: var(--bright);
+        transform: translateY(-10px);
+      }
+
+      /* Image Full Size Management */
+      .chat-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        /* Ye image ko katne nahi dega, poori dikhayega */
+        border-radius: 12px;
+      }
+
+      /* --- ANIMATION --- */
+      @keyframes chat-scroll {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          /* Move by 8 items + their gaps */
+          transform: translateX(calc(-380px * 8));
+        }
+      }
+
+      /* Phone Responsive */
+      @media (max-width: 768px) {
+        .chat-card {
+          width: 280px;
+          height: 380px;
+        }
+
+        .testimonial-content {
+          width: calc((280px + 20px) * 16);
+          gap: 20px;
+        }
+
+        @keyframes chat-scroll {
+          0% {
+            transform: translateX(0);
+          }
+
+          100% {
+            transform: translateX(calc(-300px * 8));
+          }
+        }
+      }
+
+      /* ==========================================
+   STRICT MOBILE FIX - PASTE AT THE END
+   ========================================== */
+      @media (max-width: 1024px) {
+
+        /* 1. LOGO FIX (Force Show) */
+        .nav-logo,
+        .logo,
+        .navbar-brand,
+        .nav-logo img {
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          width: 140px !important;
+          /* Size adjust karein */
+          height: auto !important;
+        }
+
+        /* 2. PROTOCOL (ALL 6 STEPS) FIX */
+        /* Is se left/right ka chakkar khatam ho jayega */
+        .process-step {
+          position: static !important;
+          /* Absolute/Relative position khatam */
+          width: 100% !important;
+          left: 0 !important;
+          right: 0 !important;
+          margin: 20px 0 !important;
+          transform: none !important;
+          /* Jo screen se bahar bhej raha tha wo khatam */
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          opacity: 1 !important;
+          /* Agar gayab thay to dikhne lagenge */
+          visibility: visible !important;
+        }
+
+        .step-content {
+          width: 90% !important;
+          margin: 0 auto !important;
+          text-align: center !important;
+        }
+
+        .step-number {
+          position: relative !important;
+          left: auto !important;
+          right: auto !important;
+          margin-bottom: 10px !important;
+        }
+
+        /* 3. TEAM SECTION (Force 1 Card) */
+        .team-grid {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          grid-template-columns: 1fr !important;
+          /* Grid ko khatam kiya */
+        }
+
+        .team-card {
+          width: 100% !important;
+          max-width: 300px !important;
+          /* Ek card ki width */
+          margin-bottom: 30px !important;
+        }
+      }
+    </style>
+  </head>
+
+<body>
+  <div class="cursor-glow"></div>
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <!-- <img src="logo.png" class="nav-logo-img"> -->
+      <span class="logo-text">Viral <span class="highlight">Vibes</span></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#stats">Results</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#protocol">Process</a></li>
+      <li><a href="#packages">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#team">Team</a></li>
+    </ul>
+
+    <a href="#contact" class="nav-cta">Get Started</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-bg"></div>
+
+    <div class="hero-left fade-in">
+      <div class="hero-badge">Viral Vibes · Premium Growth Agency</div>
+      <h1>We make your business <em>impossible to ignore.</em></h1>
+      <p class="hero-sub">Done-for-you strategy that converts <strong>strangers into customers.</strong> Power your
+        social media with our <strong>Revenue Engine</strong> — from strategy to execution, fully handled.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-p">Start Growing Now</a>
+        <a href="#results" class="btn-o">See Client Results</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><span class="trust-dot"></span>30+ Clients Served</div>
+        <div class="trust-item"><span class="trust-dot"></span>300M+ Views Generated</div>
+        <div class="trust-item"><span class="trust-dot"></span>$1.5M+ Revenue Created</div>
+      </div>
+    </div>
+    <div class="hero-right fade-in" style="transition-delay:.15s">
+      <div class="hero-shapes">
+        <div class="hs-blob"></div>
+        <div class="hs-ring"></div>
+        <div class="hs-ring2"></div>
+        <div class="hs-hex"></div>
+        <div class="hs-diamond"></div>
+        <div class="hs-dots"></div>
+      </div>
+
+      <div class="stat-pill sp1"><span class="pill-icon">📈</span>
+        <div>
+          <div class="pill-val">300M+</div>
+          <div class="pill-lbl">Views Generated</div>
+        </div>
+      </div>
+      <div class="stat-pill sp2"><span class="pill-icon">💰</span>
+        <div>
+          <div class="pill-val">$1.5M+</div>
+          <div class="pill-lbl">Revenue Created</div>
+        </div>
+      </div>
+      <div class="stat-pill sp3"><span class="pill-icon">🏆</span>
+        <div>
+          <div class="pill-val">30+</div>
+          <div class="pill-lbl">Clients Scaled</div>
+        </div>
+      </div>
+
+      <div class="hero-founders">
+        <div class="founder-slide active">
+          <img src="Founder.png" alt="Noor Mughal">
+          <div class="founder-info">
+            <h4>Noor Mughal</h4>
+            <p>Founder</p>
+          </div>
+        </div>
+
+        <div class="founder-slide">
+          <img src="cofounder.png" alt="Awais Mirza">
+          <div class="founder-info">
+            <h4>Awais Mirza</h4>
+            <p>Co-Founder</p>
+          </div>
+        </div>
+
+        <div class="founder-dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- LOGOS -->
+  <section class="client-marquee-section">
+    <div class="marquee-header">
+      <span class="eyebrow">Our Network</span>
+      <h2 class="section-title">Trusted by <span class="highlight">Industry Leaders</span></h2>
+    </div>
+
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-1.jpeg" alt=""></div>
+        </div>
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-2.png" alt=""></div>
+        </div>
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-3.jpeg" alt=""></div>
+        </div>
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-4.jpeg" alt=""></div>
+        </div>
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-5.jpeg" alt=""></div>
+        </div>
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-6.jpeg" alt=""></div>
+        </div>
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-7.jpeg" alt=""></div>
+        </div>
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-8.jpeg" alt=""></div>
+        </div>
+
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-1.jpeg" alt=""></div>
+        </div>
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-2.png" alt=""></div>
+        </div>
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-3.jpeg" alt=""></div>
+        </div>
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-4.jpeg" alt=""></div>
+        </div>
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-5.jpeg" alt=""></div>
+        </div>
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-6.jpeg" alt=""></div>
+        </div>
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-7.jpeg" alt=""></div>
+        </div>
+        <div class="client-logo-item">
+          <div class="logo-circle"><img src="client-8.jpeg" alt=""></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section" id="stats">
+    <div class="sec-head fade-in">
+      <span class="eyebrow">By the Numbers</span>
+      <h2 class="section-title">Just Show Up — We Handle Everything</h2>
+      <p class="section-sub">Our <strong style="color:var(--bright)">Revenue Engine</strong> runs your entire social
+        media presence so you can focus on serving your clients.</p>
+    </div>
+    <div class="stats-grid fade-in">
+      <div class="stat-card"><span class="stat-num">$1.5M+</span>
+        <div class="stat-label">Revenue Generated for Clients</div>
+      </div>
+      <div class="stat-card"><span class="stat-num">300M+</span>
+        <div class="stat-label">Views Generated</div>
+      </div>
+      <div class="stat-card"><span class="stat-num">30+</span>
+        <div class="stat-label">Service Businesses Scaled</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="engine-section" id="services">
+    <div class="sec-head fade-in">
+      <span class="eyebrow">The Revenue Engine</span>
+      <h2 class="section-title">Everything You Need to <br> Sell on Social Media</h2>
+      <p class="section-sub">One complete system — from followers to paying clients.</p>
+    </div>
+
+    <div class="services-grid fade-in">
+      <div class="svc w2"><span class="svc-icon">🧭</span>
+        <div class="svc-title">Marketing Strategy</div>
+        <div class="svc-desc">Custom plan built around your goals. Built to convert.</div>
+      </div>
+      <div class="svc"><span class="svc-icon">🔍</span>
+        <div class="svc-title">Deep Analysis</div>
+        <div class="svc-desc">Full competitor analysis and audit.</div>
+      </div>
+      <div class="svc"><span class="svc-icon">📅</span>
+        <div class="svc-title">Content Planning</div>
+        <div class="svc-desc">Data-backed calendar aligned to your brand.</div>
+      </div>
+
+      <div class="svc"><span class="svc-icon">✂️</span>
+        <div class="svc-title">Professional Editing</div>
+        <div class="svc-desc">High-retention edits with hooks and pacing.</div>
+      </div>
+      <div class="svc"><span class="svc-icon">📤</span>
+        <div class="svc-title">Done-for-You Posting</div>
+        <div class="svc-desc">All uploads and SEO captions — hands-free.</div>
+      </div>
+      <div class="svc w2"><span class="svc-icon">🤖</span>
+        <div class="svc-title">DM Automation & Lead Warmup</div>
+        <div class="svc-desc">Smart DM flows that nurture every follower 24/7.</div>
+      </div>
+
+      <div class="svc w2"><span class="svc-icon">🔄</span>
+        <div class="svc-title">Funnel & Campaign Setup</div>
+        <div class="svc-desc">End-to-end sales funnel design for revenue.</div>
+      </div>
+      <div class="svc"><span class="svc-icon">📣</span>
+        <div class="svc-title">Paid Ads Management</div>
+        <div class="svc-desc">Full Meta setup, creatives, and targeting.</div>
+      </div>
+      <div class="svc"><span class="svc-icon">📝</span>
+        <div class="svc-title">Script Writing</div>
+        <div class="svc-desc">Psychologically-crafted scripts with hooks.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-hr"></div>
+
+  <!-- RESULTS -->
+  <section class="results-section" id="results">
+    <div class="sec-head fade-in">
+      <span class="eyebrow">Proven Results</span>
+      <h2 class="section-title">Client Transformation Gallery</h2>
+      <p class="section-sub">Real growth screenshots from our most successful partners.</p>
+    </div>
+
+    <div class="results-bento-grid fade-in">
+      <div class="result-card bento-large">
+        <span class="rc-tag">12K Followers</span>
+        <img src="result-1.jpeg" alt="Profile Growth" class="result-img">
+        <!-- <span class="rc-tag">74M+ Views</span>
+        <img src="result-10.jpeg" alt="Viral Views Result" class="result-img"> -->
+      </div>
+
+      <div class="result-card bento-tall">
+        <span class="rc-tag">Multi-Viral Campaign</span>
+        <img src="result-8.jpeg" alt="Viral Results" class="result-img">
+      </div>
+
+      <div class="result-card">
+        <span class="rc-tag">$45K Revenue</span>
+        <img src="result-2.jpeg" alt="Revenue Result" class="result-img">
+      </div>
+
+      <div class="result-card">
+        <span class="rc-tag">$65K+ Generated</span>
+        <img src="result-3.jpeg" alt="Revenue Spike" class="result-img">
+      </div>
+
+      <div class="result-card bento-wide">
+        <span class="rc-tag">20K Followers</span>
+        <img src="result-5.png" alt="Influencer Growth" class="result-img">
+      </div>
+
+      <div class="result-card">
+        <span class="rc-tag">21M Views</span>
+        <img src="result-4.jpeg" alt="Views Milestone" class="result-img">
+      </div>
+
+      <div class="result-card">
+        <span class="rc-tag">44M Organic Reach</span>
+        <img src="result-7.jpeg" alt="Organic Growth" class="result-img">
+      </div>
+
+      <div class="result-card bento-tall">
+        <span class="rc-tag">20M+ Views</span>
+        <img src="result-10.jpeg" alt="Ads Performance" class="result-img">
+      </div>
+
+      <div class="result-card bento-wide">
+        <span class="rc-tag">39K Community</span>
+        <img src="result-9.png" alt="Community Build" class="result-img">
+      </div>
+
+      <div class="result-card">
+        <span class="rc-tag">88 Leads @ $0.36</span>
+        <img src="result-6.jpeg" alt="Ads Performance" class="result-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- PROTOCOL zigzag -->
+  <section class="protocol-section" id="protocol">
+    <div class="sec-head fade-in">
+      <span class="eyebrow">Systematized Growth</span>
+      <h2 class="section-title">Our 6-Step Revenue Engine Protocol</h2>
+      <p class="section-sub">Every step is engineered to build authority, grow your audience, and turn views into
+        revenue.</p>
+    </div>
+    <div class="zigzag fade-in">
+
+      <div class="zz-row">
+        <div class="zz-empty"></div>
+        <div class="zz-num">01</div>
+        <div class="zz-right">
+          <div class="zz-card"><span class="zz-lbl">Step 01</span>
+            <h3>Deep-Dive Strategy & Audit</h3>
+            <p>We audit your presence, analyse competitors, map niche gaps, and build a custom marketing strategy
+              aligned to your revenue goals.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="zz-row">
+        <div class="zz-left">
+          <div class="zz-card"><span class="zz-lbl">Step 02</span>
+            <h3>Brand Positioning & Identity</h3>
+            <p>We define your unique positioning, content pillars, tone of voice, and visual identity so your brand
+              builds trust immediately.</p>
+          </div>
+        </div>
+        <div class="zz-num">02</div>
+        <div class="zz-empty"></div>
+      </div>
+
+      <div class="zz-row">
+        <div class="zz-empty"></div>
+        <div class="zz-num">03</div>
+        <div class="zz-right">
+          <div class="zz-card"><span class="zz-lbl">Step 03</span>
+            <h3>Viral Script Writing & Content Planning</h3>
+            <p>We craft psychologically-hooked scripts and a content calendar built around your audience's pain points
+              and buying triggers.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="zz-row">
+        <div class="zz-left">
+          <div class="zz-card"><span class="zz-lbl">Step 04</span>
+            <h3>High-Retention Editing & Posting</h3>
+            <p>Our editors produce scroll-stopping content. We handle all uploads, hashtags, SEO, and timing —
+              completely done for you.</p>
+          </div>
+        </div>
+        <div class="zz-num">04</div>
+        <div class="zz-empty"></div>
+      </div>
+
+      <div class="zz-row">
+        <div class="zz-empty"></div>
+        <div class="zz-num">05</div>
+        <div class="zz-right">
+          <div class="zz-card"><span class="zz-lbl">Step 05</span>
+            <h3>Funnel, Ads & Campaign Setup</h3>
+            <p>We build your full sales funnel, set up paid ad campaigns, and create infrastructure that converts social
+              audiences into paying clients.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="zz-row">
+        <div class="zz-left">
+          <div class="zz-card"><span class="zz-lbl">Step 06</span>
+            <h3>Engagement, DM Automation & Lead Warmup</h3>
+            <p>We manage your community, automate DM flows 24/7, and run a lead warmup system that keeps your pipeline
+              full — on autopilot.</p>
+          </div>
+        </div>
+        <div class="zz-num">06</div>
+        <div class="zz-empty"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="glow-hr"></div>
+
+  <!-- PACKAGES -->
+  <section class="pkg-section" id="packages">
+    <div class="sec-head fade-in">
+      <span class="eyebrow">Pricing</span>
+      <h2 class="section-title">Choose Your Growth Package</h2>
+      <p class="section-sub">Two tiers, both fully done-for-you. Pick the one that matches where you're going.</p>
+    </div>
+    <div class="pkg-grid">
+
+      <div class="pkg-card fade-in">
+        <div class="pkg-badges"><span class="pkg-badge pr">Growth</span><span class="pkg-badge gh">Done-for-You</span>
+        </div>
+        <div class="pkg-name">The Revenue Engine</div>
+        <span class="pkg-price">$3,899</span>
+        <div class="pkg-period">/ month &nbsp;·&nbsp; Plan to execution</div>
+        <div class="pkg-guar">🛡️ Results-focused partnership — we're invested in your growth.</div>
+        <div class="pkg-items">
+          <div class="pkg-item">Marketing Strategy</div>
+          <div class="pkg-item">Deep Analysis & Audit</div>
+          <div class="pkg-item">Content Planning</div>
+          <div class="pkg-item">Professional Editing</div>
+          <div class="pkg-item">Done-for-You Posting</div>
+          <div class="pkg-item">Engagement Management</div>
+          <div class="pkg-item">DM Automation (24/7)</div>
+          <div class="pkg-item">Lead Warmup System</div>
+          <div class="pkg-item">Brand Identity</div>
+          <div class="pkg-item">Paid Ads Management</div>
+          <div class="pkg-item">Script Writing</div>
+          <div class="pkg-item">Funnel & Campaign Setup</div>
+        </div>
+        <div class="pkg-note">* Ad spend is separate, paid directly to ad platforms by you.</div>
+        <a href="#contact" class="btn-o" style="width:100%;text-align:center;display:block;padding:13px">Get Started
+          →</a>
+      </div>
+
+      <div class="pkg-card elite fade-in" style="transition-delay:.12s">
+        <div class="pkg-ribbon">⭐ Most Popular</div>
+        <div class="pkg-badges"><span class="pkg-badge pr">Elite</span><span class="pkg-badge gh">Revenue
+            Domination</span></div>
+        <div class="pkg-name">The Domination Package</div>
+        <span class="pkg-price">$5,499</span>
+        <div class="pkg-period">/ month &nbsp;·&nbsp; Full-scale brand domination</div>
+        <div class="pkg-guar">🛡️ 100% Refund Guarantee — miss agreed goals, get every penny back.</div>
+        <div class="pkg-items">
+          <div class="pkg-item">Everything in Revenue Engine</div>
+          <div class="pkg-item star">Monthly 1-on-1 Strategy Call with Founder</div>
+          <div class="pkg-item star">Multi-Platform (IG + TikTok + YouTube + LinkedIn)</div>
+          <div class="pkg-item star">Weekly Analytics Report & Performance Dashboard</div>
+          <div class="pkg-item star">Priority 48-Hour Content Turnaround</div>
+          <div class="pkg-item star">6 A/B Tested Ad Creative Variants / Month</div>
+          <div class="pkg-item star">Dedicated Account Manager — direct line, always-on</div>
+          <div class="pkg-item star">PR & Collaboration Outreach (brand deals, podcasts)</div>
+          <div class="pkg-item star">Custom Landing Page Design & Optimisation</div>
+          <div class="pkg-item star">Email / WhatsApp Broadcast Campaign Setup</div>
+          <div class="pkg-item star">Monthly Competitor Spy Intelligence Report</div>
+          <div class="pkg-item star">Guaranteed 100K Followers in 6 Months or Full Refund</div>
+        </div>
+        <div class="pkg-note">* Ad spend is separate. PR paid placements billed separately if required.</div>
+        <a href="#contact" class="btn-p"
+          style="width:100%;text-align:center;display:block;padding:14px;font-size:.92rem">Start Domination →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER'S MESSAGE -->
+  <section class="founder-section" id="founder">
+    <div class="founder-inner">
+      <div class="founder-photo fade-in">
+        <div class="photo-glow"></div>
+        <img src="noor-mughal.png" alt="Noor Mughal" class="founder-img">
+      </div>
+
+      <div class="founder-text fade-in">
+        <span class="eyebrow">Founder's Message</span>
+        <h2 class="section-title">Why I Built Viral Vibes</h2>
+        <blockquote class="fq">
+          "I've seen incredible service businesses fail online — not because their work wasn't great, but because
+          <strong>no one knew they existed.</strong> Viral Vibes was built to fix that permanently."
+        </blockquote>
+        <p>Most agencies will sell you followers. We sell you <strong style="color:var(--bright)">revenue</strong>.
+          Every system we build — from content to DM automation to paid ads — is engineered around one goal: turning
+          your social media into your best-performing sales channel.</p>
+        <p>We've worked with 30+ service businesses, generated over $1.5M in revenue, and 300M+ views combined. We don't
+          guess — we execute with precision. If you're serious about scaling, we are too.</p>
+
+        <div class="founder-sig">
+          <div class="sig-av">NM</div>
+          <div>
+            <div class="sig-name">Noor Mughal</div>
+            <div class="sig-role">Founder & CEO, Viral Vibes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testi-section" id="testimonials">
+    <div class="sec-head fade-in">
+      <span class="eyebrow">Client Love</span>
+      <h2 class="section-title">What Our Clients Say</h2>
+      <p class="section-sub">Real results from real service businesses.</p>
+    </div>
+
+    <div class="testi-vids fade-in">
+      <div class="testi-vc">
+        <video class="client-video" preload="metadata" loop playsinline>
+          <source src="video1.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay">
+          <div class="play-btn">▶</div>
+          <div class="client-meta">
+            <div class="client-name">Rakesh</div>
+            <div class="client-desc">Real Estate Agent</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-vc">
+        <video class="client-video" preload="metadata" loop playsinline>
+          <source src="video2.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay">
+          <div class="play-btn">▶</div>
+          <div class="client-meta">
+            <div class="client-name">Ruth</div>
+            <div class="client-desc">E-commerce Founder</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-vc">
+        <video class="client-video" preload="metadata" loop playsinline>
+          <source src="video3.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay">
+          <div class="play-btn">▶</div>
+          <div class="client-meta">
+            <div class="client-name">Aditya Vikram</div>
+            <div class="client-desc">Owner, Travel Agency</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Mercury Screenshort-->
+  <section class="testimonials-marquee-section">
+    <div class="marquee-header">
+      <span class="eyebrow">Results Speak Louder</span>
+      <h2 class="section-title">More Words From <span class="highlight">Our Clients</span></h2>
+    </div>
+
+    <div class="testimonial-container">
+      <div class="testimonial-content">
+        <div class="chat-card"><img src="screen-1.jpeg" alt="Client Feedback"></div>
+        <div class="chat-card"><img src="screen-2.jpeg" alt="Client Feedback"></div>
+        <div class="chat-card"><img src="screen-3.jpeg" alt="Client Feedback"></div>
+        <div class="chat-card"><img src="screen-4.jpeg" alt="Client Feedback"></div>
+        <div class="chat-card"><img src="screen-5.jpeg" alt="Client Feedback"></div>
+        <div class="chat-card"><img src="screen-6.jpeg" alt="Client Feedback"></div>
+        <div class="chat-card"><img src="screen-7.jpeg" alt="Client Feedback"></div>
+        <div class="chat-card"><img src="screen-8.jpeg" alt="Client Feedback"></div>
+
+        <div class="chat-card"><img src="screen-1.jpeg" alt="Client Feedback"></div>
+        <div class="chat-card"><img src="screen-2.jpeg" alt="Client Feedback"></div>
+        <div class="chat-card"><img src="screen-3.jpeg" alt="Client Feedback"></div>
+        <div class="chat-card"><img src="screen-4.jpeg" alt="Client Feedback"></div>
+        <div class="chat-card"><img src="screen-5.jpeg" alt="Client Feedback"></div>
+        <div class="chat-card"><img src="screen-6.jpeg" alt="Client Feedback"></div>
+        <div class="chat-card"><img src="screen-7.jpeg" alt="Client Feedback"></div>
+        <div class="chat-card"><img src="screen-8.jpeg" alt="Client Feedback"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ 2-col -->
+  <section class="faq-section" id="faq">
+    <div class="sec-head fade-in">
+      <span class="eyebrow">Got Questions?</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-sub">Everything you need to know before getting started with Viral Vibes.</p>
+    </div>
+    <div class="faq-grid fade-in">
+      <div class="faq-item">
+        <div class="faq-q">What exactly is the "Revenue Engine"?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Our complete done-for-you system covering strategy, content, editing, posting, DM automation,
+          ads, and funnels — engineered to turn social media into a revenue machine.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is this for influencers or service businesses?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Exclusively for service-based businesses — coaches, consultants, agencies, clinics, and
+          professionals. We generate clients and revenue, not just followers.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How involved do I need to be day-to-day?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Minimal. You'll be involved during onboarding and occasional content approvals. Outside of
+          that, you focus on delivering your service — we handle everything else.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What does "ads budget not included" mean?<span class="faq-icon">+</span></div>
+        <div class="faq-a">The package price covers full ad campaign management and setup. The actual spend on platforms
+          like Meta or TikTok is paid directly to those platforms separately.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How soon will I start seeing results?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Most clients see meaningful traction within 30–60 days. Revenue results typically compound
+          over 60–90 days as the funnel, automation, and content build momentum.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What platforms do you manage?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Primarily Instagram, TikTok, YouTube Shorts, and LinkedIn. During strategy we identify where
+          your ideal clients spend time and prioritise those platforms for max ROI.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What's the difference between the two packages?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Growth covers the full core system. Domination adds a dedicated account manager,
+          multi-platform expansion, weekly reports, PR outreach, A/B ad creatives, custom landing pages, and a 100K
+          followers guarantee with full refund protection.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I get started?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Click "Get Started" or message us on WhatsApp. We'll have a short discovery call, and if it's
+          a good fit, your Revenue Engine kicks off within days.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team-section" id="team">
+    <div class="sec-head fade-in">
+      <span class="eyebrow">The Leadership</span>
+      <h2 class="section-title">The People Behind Your Growth</h2>
+      <p class="section-sub">Strategy and execution — the duo making your brand impossible to ignore.</p>
+    </div>
+
+    <div class="team-grid fade-in">
+      <div class="team-card">
+        <div class="team-avatar">
+          <img src="2.png" alt="Noor Mughal" class="team-img">
+        </div>
+        <span class="team-role">Founder & CEO</span>
+        <div class="team-name">Noor Mughal</div>
+        <p class="team-bio">The strategist. Helping service businesses dominate social media with revenue-driven
+          systems.</p>
+        <div class="team-links">
+          <a href="https://www.linkedin.com/in/noor-mughal28/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">
+          <img src="1.png" alt="Awais Mirza" class="team-img">
+        </div>
+        <span class="team-role">Co-Founder</span>
+        <div class="team-name">Awais Mirza</div>
+        <p class="team-bio">The growth engine. Expert in scaling brands through precision content and paid ad funnels.
+        </p>
+        <!-- <div class="team-links">
+          <a href="https://linkedin.com/in/co-founder-profile" target="_blank">LinkedIn</a>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- BONUS -->
+  <section class="bonus-section">
+    <div class="bonus-inner">
+      <div class="fade-in">
+        <span class="eyebrow" style="background:rgba(100,204,197,.1);padding:4px 14px;border-radius:50px">Free Strategy
+          Call</span>
+        <h2
+          style="font-family:'Syne',sans-serif;font-size:clamp(1.65rem,2.8vw,2.3rem);font-weight:800;letter-spacing:-.5px;margin:16px 0 13px;line-height:1.16">
+          Book a Free Revenue Engine Session</h2>
+        <p style="color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:22px;font-size:.88rem">A complimentary
+          1-on-1 session to audit your social media, identify revenue leaks, and map out your custom growth plan — free,
+          no strings attached.</p>
+        <ul class="bonus-list">
+          <li>Full Social Media Audit</li>
+          <li>Custom 90-Day Revenue Plan</li>
+          <li>Competitor Gap Analysis</li>
+          <li>Content & Funnel Blueprint</li>
+        </ul>
+        <a href="#contact" class="btn-p">Claim Free Session →</a>
+      </div>
+      <div class="bonus-roadmap fade-in">
+        <span class="roadmap-label">Your Growth Roadmap</span>
+        <div class="roadmap-steps">
+          <div class="rs">
+            <div class="rs-num">1</div>
+            <div class="rs-text">Audit & Position Your Brand</div>
+          </div>
+          <div class="rs">
+            <div class="rs-num">2</div>
+            <div class="rs-text">Launch Revenue Engine System</div>
+          </div>
+          <div class="rs">
+            <div class="rs-num">3</div>
+            <div class="rs-text">Scale Content & Paid Ads</div>
+          </div>
+          <div class="rs">
+            <div class="rs-num">4</div>
+            <div class="rs-text">Automate & Compound Growth</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <div class="contact-img-container fade-in">
+        <img src="team.png" alt="Contact Noor Mughal" class="contact-pic">
+        <div class="neon-border"></div>
+      </div>
+
+      <div class="contact-text fade-in">
+        <span class="eyebrow">Get in Touch</span>
+        <h2 class="section-title">Ready to Make Your Business Impossible to Ignore?</h2>
+        <p>Have questions about our packages or want to see if we're a good fit? We're available <strong>24/7</strong>
+          to help you scale through social media.<br><br>Reach us anytime on social media — we respond fast.</p>
+        <br><br>
+        <a href="https://www.instagram.com/vibesviral.official/?hl=en" class="cta-wa" target="_blank">💬 Chat on
+          Instgaram</a>
+        <br><br>
+        <!-- <div class="contact-info">WhatsApp: +92 (327) 260-0068 &nbsp;·&nbsp; Available 24/7</div> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a class="footer-logo" href="#">Viral Vibes</a>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#packages">Pricing</a>
+      <a href="#testimonials">Results</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-copy">© 2025 Viral Vibes – Premium Growth Agency. All Rights Reserved.</div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(e => { e.forEach(i => { if (i.isIntersecting) i.target.classList.add('visible') }) }, { threshold: .07 })
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el))
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item'), isOpen = item.classList.contains('open')
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'))
+        if (!isOpen) item.classList.add('open')
+      })
+    })
+    window.addEventListener('scroll', () => { document.querySelector('nav').style.boxShadow = window.scrollY > 40 ? '0 4px 34px rgba(0,0,0,.45)' : 'none' })
+    const slides = document.querySelectorAll('.founder-slide');
+    const dots = document.querySelectorAll('.dot');
+
+    let index = 0;
+
+    setInterval(() => {
+      // remove active
+      slides[index].classList.remove('active');
+      dots[index].classList.remove('active');
+
+      // next index
+      index = (index + 1) % slides.length;
+
+      // add active
+      slides[index].classList.add('active');
+      dots[index].classList.add('active');
+
+    }, 3000); // 3 sec (smooth cinematic timing)
+    document.querySelectorAll('.testi-vc').forEach(container => {
+      const video = container.querySelector('video');
+      const overlay = container.querySelector('.video-overlay');
+
+      container.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+          overlay.style.opacity = '0'; // Hide name and button
+        } else {
+          video.pause();
+          overlay.style.opacity = '1'; // Show name and button
+        }
+      });
+    });
+    const video = document.getElementById("myVideo");
+
+    // Browser policy ki wajah se pehle mute rakhna parray ga
+    video.muted = true;
+
+    // Jab user button click kare to unmute ho jaye
+    function playWithSound() {
+      video.muted = false;
+      video.play();
+    }
+    const glow = document.querySelector('.cursor-glow');
+
+    // Check agar element mil gaya hai
+    if (glow) {
+      window.addEventListener('mousemove', (e) => {
+        // Mouse coordinates ko smoothly update karna
+        const x = e.clientX;
+        const y = e.clientY;
+
+        glow.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%))`;
+      });
+    } else {
+      console.log("Cursor glow element nahi mila! HTML check karein.");
+    }
+  </script>
+
+</body>
+
+</html>
